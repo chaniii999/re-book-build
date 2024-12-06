@@ -10,6 +10,7 @@ version = '0.0.1-SNAPSHOT'
 bootJar {
     archiveBaseName = 'RE_BOOK'  // JAR 파일 이름 설정
     version = '0.0.1-SNAPSHOT'  // 버전 설정
+    mainClass = 'com.re_book.ReBookApplication'  // 실제 클래스 경로로 수정
 }
 
 java {
@@ -27,6 +28,8 @@ configurations {
 repositories {
     mavenCentral()
 }
+
+
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
