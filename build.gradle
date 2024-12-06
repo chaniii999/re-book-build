@@ -106,3 +106,7 @@ tasks.withType(JavaCompile) {
 clean.doLast {
     file(querydslDir).deleteDir()
 }
+
+springBoot {
+    mainClassName = 'com.rebook.Application'  // 여기에 main class 이름을 지정
+}
