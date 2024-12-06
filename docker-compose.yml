@@ -8,8 +8,7 @@ services:
       - app-network
 
   spring-app:
-    image: chani999/re_book:latest
-    # build: .
+    build: .
     container_name: spring-app
     ports:
       - "8181:8181"
