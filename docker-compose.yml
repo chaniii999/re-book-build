@@ -21,6 +21,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://re-book-db.cl0qk0k6q3ee.ap-northeast-2.rds.amazonaws.com:3306/wwww
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: qwer1234
+      SPRING_PROFILES_ACTIVE: local
     networks:
       - app-network
 
