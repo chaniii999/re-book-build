@@ -8,8 +8,13 @@ group = 'com.re_book'
 version = '0.0.1-SNAPSHOT'
 
 bootJar {
-    archiveBaseName = 'RE_BOOK'  // JAR 파일 이름 설정
+    archiveBaseName = 're_book_build'  // JAR 파일 이름 설정
     version = '0.0.1-SNAPSHOT'  // 버전 설정
+    enabled = true; // 실행 가능한 JAR만 생성하도록 설정
+}
+
+jar {
+    enabled = false;    // 기본 JAR 생성 비활성화
 }
 
 java {
@@ -28,8 +33,6 @@ repositories {
     mavenCentral()
 }
 
-
-
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -38,7 +41,7 @@ dependencies {
     runtimeOnly 'com.mysql:mysql-connector-j'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.8.1'  // 공백 수정
+    testRuntimeOnly 'org.junit.platform:juni dt-platform-launcher'
 
     // spring boot에서 jsp를 사용하기 위한 설정
     implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
@@ -79,9 +82,6 @@ dependencies {
     implementation 'com.opencsv:opencsv:5.5.2'
     // 액츄에이터
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
 
 tasks.named('test') {
