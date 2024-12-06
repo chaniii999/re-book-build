@@ -52,7 +52,7 @@ jobs:
       # 7. Docker Compose 이미지 재빌드 및 실행
       - name: Build and start Docker containers with no cache
         run: |
-          docker-compose -f docker-compose.yml up --build -d
+          docker-compose -f docker-compose.yml up --build -d --no-cache
 
       # 8. Docker Hub에 이미지 푸시
       - name: Push Docker Image to Docker Hub
