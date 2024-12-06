@@ -108,7 +108,3 @@ tasks.withType(JavaCompile) {
 clean.doLast {
     file(querydslDir).deleteDir()
 }
-
-Application {
-    mainClass = "com.re_book.ReBookApplication"  // 여기에 main class 이름을 지정
-}
