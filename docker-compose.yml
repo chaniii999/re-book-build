@@ -10,9 +10,6 @@ services:
       - app-network
 
   spring-app:
-    build:
-      context: .  # 현재 디렉토리에서 빌드
-      dockerfile: Dockerfile  # Dockerfile을 사용하여 빌드
     image: chani999/re_book:latest
     container_name: spring-app
     ports:
