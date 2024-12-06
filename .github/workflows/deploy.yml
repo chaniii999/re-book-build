@@ -44,6 +44,11 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+      - name: Build project image
+        run: docker build -t chani999/re_book:latest .
+      - name: Push project image
+        run: docker push chani999/re_book:latest
+
       # 7. Docker Compose 이미지 재빌드 및 실행
       - name: Build and start Docker containers with no cache
         run: |
