@@ -54,7 +54,7 @@ public class ReviewController {
             String memberUuid = userInfo.getId();
             Review savedReview = reviewService.register(bookId, dto, memberUuid);
             response.put("success", true);
-            response.put("message", "리뷰가 성공적으로 작성되었습니다.");
+            response.put("message", "리뷰가 성공적으로 작성되었습니다.ㅋ");
             response.put("reviewId", savedReview.getId());
             response.put("memberName", savedReview.getMember().getName());
             response.put("content", savedReview.getContent());
