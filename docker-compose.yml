@@ -14,14 +14,11 @@ services:
       context: .
       dockerfile: Dockerfile
     image: chani999/re_book:latest
-    volumes:
-      - /application-prod.yml:/app/config/application-prod.yml  # 민감 정보 파일
     container_name: spring-app
     ports:
       - "8181:8181"
     environment:
       SPRING_PROFILES_ACTIVE: prod  # prod 프로파일 활성화
-      SPRING_CONFIG_ADDITIONAL_LOCATION: /app/config/  # 추가 설정 경로
       SPRING_DATASOURCE_URL: jdbc:mysql://re-book-db.cl0qk0k6q3ee.ap-northeast-2.rds.amazonaws.com:3306/wwww
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: qwer1234

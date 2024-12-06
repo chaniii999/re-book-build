@@ -24,6 +24,7 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew  # 실행 권한 부여
 
+
       - name: Build project without tests
         run: ./gradlew clean build -x test
 
@@ -45,11 +46,11 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       # 7. Secrets에서 application-prod.yml 생성
-      - name: Extract application-prod.yml from Secrets
-        env:
-          APPLICATION_PROD_YML: ${{ secrets.APPLICATION_PROD_YML }}
+      - name: Write the application.yml
         run: |
-          echo "$APPLICATION_PROD_YML" > ./application-prod.yml
+          echo "${{ secrets.APPLICATION_PROD_YML }}" > ./src/main/resources/application-prod.yml
+        # 비밀 저장소에서 가져온 application-prod.yml 설정을 파일로 작성합니다.
+
 
       # 8. Docker 이미지 빌드 및 푸시
       - name: Build project image
