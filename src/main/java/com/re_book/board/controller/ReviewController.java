@@ -54,7 +54,7 @@ public class ReviewController {
             String memberUuid = userInfo.getId();
             Review savedReview = reviewService.register(bookId, dto, memberUuid);
             response.put("success", true);
-            response.put("message", "리뷰가 성공적으로 작성되었습니다.ㅋ");
+            response.put("message", "리뷰가 성공적으로 작성되었습니다.~~");
             response.put("reviewId", savedReview.getId());
             response.put("memberName", savedReview.getMember().getName());
             response.put("content", savedReview.getContent());
@@ -63,7 +63,7 @@ public class ReviewController {
             response.put("createDate", savedReview.getCreatedDate());
 
             CommonResDto resDto
-                    = new CommonResDto(HttpStatus.OK, "리뷰 작성 완료되었다 임마 ㅋ", response);
+                    = new CommonResDto(HttpStatus.OK, "리뷰 작성 완료됐다리~~~~~", response);
             return new ResponseEntity<>(resDto, HttpStatus.OK);
         } catch (Exception e) {
             response.put("success", false);
