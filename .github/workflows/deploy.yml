@@ -36,6 +36,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y docker-compose
+
       # 6. Docker 로그인 (Docker Hub 또는 프라이빗 레지스트리)
       - name: Docker Login
         uses: docker/login-action@v2
@@ -43,20 +44,26 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+      # 7. Secrets에서 application-prod.yml 생성
+      - name: Extract application-prod.yml from Secrets
+        env:
+          APPLICATION_PROD_YML: ${{ secrets.APPLICATION_PROD_YML }}
+        run: |
+          echo "$APPLICATION_PROD_YML" > ./application-prod.yml
+
+      # 8. Docker 이미지 빌드 및 푸시
       - name: Build project image
         run: docker build -t chani999/re_book:latest .
+
       - name: Push project image
         run: docker push chani999/re_book:latest
 
-      # 7. Docker Compose 이미지 재빌드 및 실행
+      # 9. Docker Compose 이미지 재빌드 및 실행
       - name: Build and start Docker containers with no cache
         run: |
           docker-compose -f docker-compose.yml up --build -d
-      # 8. Docker Hub에 이미지 푸시
-      - name: Push Docker Image to Docker Hub
-        run: |
-          docker-compose -f docker-compose.yml push
-      # 9. AWS EC2에 Docker 로그인 및 이미지 풀
+
+      # 10. AWS EC2에 Docker 로그인 및 이미지 풀
       - name: SSH to EC2 and Pull Image
         uses: appleboy/ssh-action@v0.1.8
         with:
@@ -66,9 +73,11 @@ jobs:
           script: |
             # 1. 최신 Docker 이미지 받기
             docker-compose -f docker-compose.yml pull
-            # 2. 기존 컨테이너 중지 및 제거
+            # 2. application-prod.yml 복사
+            echo "$APPLICATION_PROD_YML" > ./application-prod.yml
+            # 3. 기존 컨테이너 중지 및 제거
             docker-compose down
-            # 3. 새 컨테이너 빌드 및 실행
+            # 4. 새 컨테이너 빌드 및 실행
             docker-compose up -d
-            # 4. 실행 상태 확인
+            # 5. 실행 상태 확인
             docker ps

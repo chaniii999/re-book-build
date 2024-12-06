@@ -14,6 +14,8 @@ services:
       context: .
       dockerfile: Dockerfile
     image: chani999/re_book:latest
+    volumes:
+      - ./application-prod.yml:/app/config/application-prod.yml
     container_name: spring-app
     ports:
       - "8181:8181"
@@ -21,11 +23,8 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://re-book-db.cl0qk0k6q3ee.ap-northeast-2.rds.amazonaws.com:3306/wwww
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: qwer1234
-      SPRING_PROFILES_ACTIVE: local
-      JWT_EXPIRATION: 30
-      JWT_SECRET_KEY: rI9KLc/nWq+0ehvbQXjST52lIHi+A4PurdKwAe0ZcN+0LE1QBv7p0qhFxzxcv8PaigtMXpJHdIl6p4ILsLDasA==
-      JWT_EXPIRATION_RT: 14400
-      JWT_SECRET_KEY_RT: lGBm6kwqJoKjLioZfyYJ+OTstjyczTbf7tJXar1pQ2PDSeg5LZQ30DXzxcvM7zKiysBfPkdv6KTVOJ+UcL5C6g==
+      SPRING_PROFILES_ACTIVE: prod
+
     networks:
       - app-network
 
