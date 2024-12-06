@@ -63,7 +63,7 @@ public class ReviewController {
             response.put("createDate", savedReview.getCreatedDate());
 
             CommonResDto resDto
-                    = new CommonResDto(HttpStatus.OK, "리뷰 작성 완료", response);
+                    = new CommonResDto(HttpStatus.OK, "리뷰 작성 완료되었다 임마 ㅋ", response);
             return new ResponseEntity<>(resDto, HttpStatus.OK);
         } catch (Exception e) {
             response.put("success", false);
