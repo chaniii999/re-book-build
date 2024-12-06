@@ -1,14 +1,23 @@
- # 1단계: Spring Boot JAR 파일 복사 및 실행 준비
-FROM openjdk:17-jdk-slim
+# Gradle 이미지 기반으로 빌드
+FROM gradle:7.4-jdk17 AS build
 
+# 작업 디렉토리 설정
 WORKDIR /app
 
-# JAR 파일 복사
-COPY build/libs/RE_BOOK-0.0.1-SNAPSHOT.jar /app/RE_BOOK-app.jar
+# 코드 복사
+COPY . .
 
-# 환경 변수 설정
-ENV JAVA_HOME=/usr/local/openjdk-17
-ENV PATH=$JAVA_HOME/bin:$PATH
+# Gradle 빌드 실행 (테스트 제외)
+RUN ./gradlew clean build -x test
 
-# Spring Boot 실행
-CMD ["/usr/local/openjdk-17/bin/java", "-jar", "/app/RE_BOOK-app.jar"]
+# 실제 실행 환경 설정
+FROM openjdk:17-jdk-alpine
+
+# 작업 디렉토리 설정
+WORKDIR /app
+
+# 빌드된 JAR 파일 복사
+COPY --from=build /app/build/libs/*.jar app.jar
+
+# JAR 파일 실행
+ENTRYPOINT ["java", "-jar", "app.jar"]
