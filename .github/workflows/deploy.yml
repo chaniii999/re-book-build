@@ -44,7 +44,7 @@ jobs:
           docker push chani999/re_book:latest
 
       # 7. Docker Compose를 사용한 컨테이너 빌드 및 실행
-      - name: Build and Start Docker Containers with no cache
+      - name: Build and Start Docker Containers
         run: |
           docker-compose -f docker-compose.yml up --build -d
 

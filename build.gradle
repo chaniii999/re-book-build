@@ -110,5 +110,5 @@ clean.doLast {
 }
 
 springBoot {
-    mainClass = 'com.rebook.ReBookApplication'  // 여기에 main class 이름을 지정
+    mainClass = 'com.re_book.ReBookApplication'  // 여기에 main class 이름을 지정
 }
