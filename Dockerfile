@@ -10,15 +10,14 @@ COPY gradle /app/gradle
 COPY build.gradle /app/
 COPY settings.gradle /app/
 
-# Gradle 종속성 캐싱 (build.gradle, settings.gradle 등...에 변경이 없으면)
-RUN ./gradlew dependencies --no-daemon
-
-# gradlew 실행 권한 부여
+# gradlew 실행 권한 부여 (여기서 권한을 먼저 설정)
 RUN chmod +x gradlew
+
+# Gradle 종속성 캐싱
+RUN ./gradlew dependencies --no-daemon
 
 # gradle wrapper로 빌드
 COPY . /app
-RUN chmod +x gradlew  # gradlew에 실행 권한을 부여 (다시 한 번 실행 권한 부여)
 RUN ./gradlew clean build -x test
 
 # 새로운 스테이지 -> 실행 영역
@@ -29,5 +28,4 @@ COPY --from=build /app/build/libs/*.jar app.jar
 
 # CMD는 기본 실행 명령어를 의미. 컨테이너 실행 시에 다른 명령어가 주어지면 그 명령어로 대체됨.
 # ENTRYPOINT는 반드시 실행되어야 할 명령어를 의미. 다른 명령어로 대체되지 않음.
-# 스프링 부트는 무조건 -jar 옵션으로 실행되어야 하기에 ENTRYPOINT로 안전하게 선언.
 ENTRYPOINT ["java", "-jar", "app.jar"]
