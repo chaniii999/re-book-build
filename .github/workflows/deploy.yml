@@ -33,8 +33,8 @@ jobs:
       - name: web springboot docker build and push
         run: |
           docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
-          docker build --no-cache -t deer0123/re_book .
-          docker push deer0123/re_book:latest
+          docker build --no-cache -t chani999/re_book .
+          docker push chani999/re_book:latest
           # Docker Hub에 로그인 후, 최신 태그를 사용하여 이미지를 빌드하고 푸시합니다.
           # '--no-cache' 옵션은 캐시를 사용하지 않고 이미지를 빌드합니다.
 
@@ -54,11 +54,11 @@ jobs:
             # 기존에 실행 중인 도커 컨테이너를 중지합니다.
 
             echo "Remove Existing Docker image..."
-            docker rmi deer0123/re_book:latest || true
+            docker rmi chani999/re_book:latest || true
             # 이전에 다운로드된 도커 이미지를 삭제합니다.
 
             echo "Pulling Docker image..."
-            docker pull deer0123/re_book:latest
+            docker pull chani999/re_book:latest
             # 최신 도커 이미지를 다시 pull합니다.
 
             echo "Starting new container..."
