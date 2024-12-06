@@ -10,7 +10,7 @@ COPY build.gradle /app/
 COPY settings.gradle /app/
 
 # 실행 권한 부여
-RUN chmod +x ./gradlew
+RUN chmod 777 ./gradlew
 
 # 소스 코드 복사 및 Gradle 빌드 (테스트 제외)
 COPY . /app
