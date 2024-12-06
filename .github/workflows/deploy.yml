@@ -46,7 +46,7 @@ jobs:
       # 7. Docker Compose를 사용한 컨테이너 빌드 및 실행
       - name: Build and Start Docker Containers with no cache
         run: |
-          docker-compose -f docker-compose.yml up --build -d --no-cache
+          docker-compose -f docker-compose.yml up --build -d
 
       # 8. Docker Hub에 이미지 푸시 (중복 제거)
       # 이 단계는 이전에 이미 `docker push` 명령어로 처리했으므로 불필요합니다.
