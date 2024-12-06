@@ -41,7 +41,7 @@ jobs:
       - name: Build and start Docker containers with no cache
         run: |
           docker build -t chani999/re_book:latest .
-          docker-compose -f docker-compose.yml up --build --no-cache -d
+          docker-compose -f docker-compose.yml up --build -d
           
 
       # 8. Docker Hub에 이미지 푸시
