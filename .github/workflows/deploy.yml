@@ -26,7 +26,7 @@ jobs:
 
       - name: Write the application.yml
         run: |
-          echo "${{ secrets.APPLICATION_YML }}" > ./src/main/resources/application-local.yml
+          echo "${{ secrets.APPLICATION_PROD_YML }}" > ./src/main/resources/application-local.yml
         # 비밀 저장소에서 가져온 application-prod.yml 설정을 파일로 작성합니다.
 
       ## Docker 이미지를 빌드하고 Docker Hub에 푸시합니다.
