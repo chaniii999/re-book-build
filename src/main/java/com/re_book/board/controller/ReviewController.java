@@ -6,7 +6,6 @@ import com.re_book.board.dto.request.ReviewUpdateRequestDTO;
 import com.re_book.board.service.ReviewService;
 import com.re_book.common.auth.TokenUserInfo;
 import com.re_book.common.dto.CommonErrorDto;
-import com.re_book.common.auth.JwtTokenProvider;
 import com.re_book.common.dto.CommonResDto;
 import com.re_book.entity.Review;
 import jakarta.validation.Valid;
