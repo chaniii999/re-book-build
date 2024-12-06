@@ -1,5 +1,4 @@
 # 첫번째 스테이지 -> 빌드 영역
-# 도커파일로 gradle build 진행할 때는 jdk-slim 사용하세요!
 FROM openjdk:17-jdk-slim AS build
 
 # 소스코드 복사
@@ -12,12 +11,14 @@ COPY build.gradle /app/
 COPY settings.gradle /app/
 
 # Gradle 종속성 캐싱 (build.gradle, settings.gradle 등...에 변경이 없으면)
-# 기존에 가지고 있던 내용을 그대로 사용함. ㅅㅂ
-RUN chmod +x ./gradlew
 RUN ./gradlew dependencies --no-daemon
+
+# gradlew 실행 권한 부여
+RUN chmod +x gradlew
 
 # gradle wrapper로 빌드
 COPY . /app
+RUN chmod +x gradlew  # gradlew에 실행 권한을 부여 (다시 한 번 실행 권한 부여)
 RUN ./gradlew clean build -x test
 
 # 새로운 스테이지 -> 실행 영역
