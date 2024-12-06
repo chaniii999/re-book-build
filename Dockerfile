@@ -3,10 +3,10 @@ FROM openjdk:17-jdk-slim AS build
 
 
 # Gradle Wrapper 파일 복사
-COPY gradlew .
-COPY gradle /gradle
-COPY build.gradle .
-COPY settings.gradle .
+COPY gradlew /app/
+COPY gradle /app/gradle
+COPY build.gradle /app/
+COPY settings.gradle /app/
 
 # 실행 권한 부여
 RUN chmod +x ./gradlew
@@ -20,5 +20,5 @@ FROM openjdk:17-jdk-slim
 
 COPY --from=build /app/build/libs/*.jar app.jar
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-Dspring.config.additional-location=/app/config/", "-jar", "app.jar"]
 

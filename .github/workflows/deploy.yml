@@ -21,12 +21,12 @@ jobs:
           java-version: '17'
 
       # 3. Gradle 빌드 (테스트 제외)
-      - name: Make gradlew executable
-        run: chmod +x ./gradlew  # 실행 권한 부여
-
-
-      - name: Build project without tests
-        run: ./gradlew clean build -x test
+#      - name: Make gradlew executable
+#        run: chmod +x ./gradlew  # 실행 권한 부여
+#
+#
+#      - name: Build project without tests
+#        run: ./gradlew clean build -x test
 
       # 4. Docker Buildx 설정
       - name: Set up Docker Buildx
